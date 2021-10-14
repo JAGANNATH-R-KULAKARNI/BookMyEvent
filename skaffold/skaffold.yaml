@@ -6,7 +6,7 @@ deploy:
       - ../k8s/*
 build:
   local:
-    push: true
+    push: false
   artifacts:
     - image: jagannathrk/bookmyevent-auth-dockerfile
       context: ../app/auth
@@ -16,3 +16,11 @@ build:
         manual:
           - src: 'src/**/*.ts'
             dest: .
+    # - image: dockerjrk1718/bme-client-df
+    #   context: ../app/client
+    #   docker:
+    #     dockerfile: Dockerfile
+    #   sync:
+    #     manual:
+    #       - src: '**/*.js'
+    #         dest: .

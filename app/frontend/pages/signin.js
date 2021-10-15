@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import Router from 'next/router';
 
-class SignUp extends React.Component
+class SignIn extends React.Component
 {
   constructor()
   {
@@ -29,17 +29,17 @@ class SignUp extends React.Component
    e.preventDefault();
 
    try{
-     const response=await axios.post('/api/users/signup',{
+     const response=await axios.post('/api/users/signin',{
      email : this.state.email,
      password : this.state.password
    });
 
    this.setState({
-     message : 'Successfully signed up :)',
+     message : 'Successfully signed in :)',
      errors : null
    });
 
-   Router.push('/signin');
+   Router.push('/');
   }
    catch(err){
     this.setState({
@@ -53,7 +53,7 @@ class SignUp extends React.Component
   {
     return (
       <div>
-        <h1>SignUp</h1>
+        <h1>SignIn</h1>
         <form>
           <div>
             <label>Email : </label>
@@ -86,4 +86,4 @@ class SignUp extends React.Component
   }
 }
 
-export default SignUp;
+export default SignIn;

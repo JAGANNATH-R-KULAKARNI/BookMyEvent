@@ -13,8 +13,8 @@ import { signupRoute} from './routes/signup';
 import { signinRoute } from './routes/signin';
 import {currentUserRoute} from './routes/currentuser';
 import {signoutRoute} from './routes/signout';
-import { NotFoundError } from './errors/allErrors';
-import { errorHandler } from './middleware/middleware';
+import { NotFoundError } from '@jrk1718tickets/common';
+import { errorHandler } from '@jrk1718tickets/common';
 
 const port : number=3000;
 

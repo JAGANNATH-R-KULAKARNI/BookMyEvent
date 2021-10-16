@@ -14,3 +14,4 @@ Home.getInitialProps=async (context)=>{
 // it means sending the page with the data already populated from the server. This is especially useful for SEO.
 
 export default Home;
+

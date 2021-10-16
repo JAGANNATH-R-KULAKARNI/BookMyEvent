@@ -3,8 +3,8 @@ import {body} from 'express-validator';
 import jwt from 'jsonwebtoken';
 import {User,createUser} from '../models/User';
 import { EncryptPassword } from '../utilities/encryptPassword';
-import { validateRequest } from '../middleware/middleware';
-import { BadRequestError } from '../errors/allErrors';
+import { validateRequest } from '@jrk1718tickets/common';
+import { BadRequestError } from '@jrk1718tickets/common';
 
 const signinRoute=express.Router();
 

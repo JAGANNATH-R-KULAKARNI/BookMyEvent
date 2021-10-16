@@ -39,7 +39,7 @@ class SignUp extends React.Component
      errors : null
    });
 
-   Router.push('/signin');
+   Router.push('/auth/signin');
   }
    catch(err){
     this.setState({

@@ -13,5 +13,4 @@ Home.getInitialProps=async (context)=>{
 //  allows you to do initial data population, 
 // it means sending the page with the data already populated from the server. This is especially useful for SEO.
 
-
 export default Home;

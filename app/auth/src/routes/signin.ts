@@ -41,6 +41,7 @@ async (req :Request,res : Response)=>{
     process.env.BME_JWT_KEY!
   );
 
+  //Cookie is created, this particular cookie is handeled by the browser
   req.session = { jwt: userJwt };
 
   return res.status(200).send(existingUser);

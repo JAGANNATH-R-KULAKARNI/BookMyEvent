@@ -6,8 +6,12 @@ const startTheServer = async () => {
     throw new Error('BME_JWT_KEY must be defined');
   }
 
+ if(!process.env.BME_MONGO_URI){
+   throw new Error('BME_MONGO_URI must be defined');
+ }
+
   try {
-    await mongoose.connect('mongodb://auth-mongo-svc:27017/auth');
+    await mongoose.connect(process.env.BME_MONGO_URI);
     console.log('Connected to MongoDB');
   } catch (err) {
     console.log(err);

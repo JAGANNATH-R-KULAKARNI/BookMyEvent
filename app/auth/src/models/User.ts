@@ -29,7 +29,7 @@ const userSchema = new mongoose.Schema(
   }
 );
 
-//Before the document is stored this function always runs
+//Before the document is stored '.pre' function always runs
 //'done' function is used to move from the middlware if async function is used
 userSchema.pre('save', async function (done) {
   if (this.isModified('password')) {

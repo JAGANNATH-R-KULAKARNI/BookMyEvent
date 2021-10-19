@@ -25,6 +25,7 @@ AppComponent.getInitialProps=async (appContext)=>{
  let pageProps = {};
  if (appContext.Component.getInitialProps) {
    pageProps = await appContext.Component.getInitialProps(appContext.ctx);
+   //getInitialProps in index.js is not invoked so we invoke that manually
  }
  return {
   pageProps,
@@ -41,3 +42,32 @@ export default AppComponent;
 
 // Server-side rendering (SSR) is an application's 
 // ability to convert HTML files on the server into a fully rendered HTML page for the client.
+
+// import serverOrBrowserRequest from "../helpers/buildRequest";
+// import NavHeader from '../component/header';
+// import React from 'react';
+
+// class AppComponent extends React.Component
+// {
+//   constructor()
+//   {
+//     super();
+//   }
+
+//   componentDidMount()
+//   {
+//     console.log('in the constructor lol')
+//     console.log(typeof window);
+//   }
+
+//   render()
+//   {
+//     return (
+//       <div>
+//         Hey lolll
+//       </div>
+//     );
+//   }
+// };
+
+// export default AppComponent;

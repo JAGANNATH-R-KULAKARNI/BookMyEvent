@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bme-tickets-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bme-tickets
+  template:
+    metadata:
+      labels:
+        app: bme-tickets
+    spec:
+      containers:
+        - name: bme-tickets
+          image: jagannathrk/bookmyevent-tickets-dockerfile
+          env:
+            - name: BME_MONGO_URI
+              value: 'mongodb://tickets-mongo-svc:27017/auth'
+            - name: BME_JWT_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: bme-jwt-secret
+                  key: BME_JWT_KEY

@@ -37,14 +37,16 @@ signupRoute.post(
 
     await user.save();
 
+    //JWT token is created
     const userJwt = jwt.sign(
       {
         id: user.id,
         email: user.email,
       },
-      process.env.BME_JWT_KEY!
+      process.env.BME_JWT_KEY!   //This particular secret is present in kubernetes cluster(it is manually assigned)
     );
 
+     //cookie is created
     req.session = { jwt: userJwt };
 
     return res.status(201).send(user);

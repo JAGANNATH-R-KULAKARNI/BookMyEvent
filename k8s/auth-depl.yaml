@@ -16,6 +16,8 @@ spec:
         - name: auth
           image: jagannathrk/bookmyevent-auth-dockerfile
           env:
+            - name: BME_MONGO_URI
+              value: 'mongodb://auth-mongo-svc:27017/auth'
             - name: BME_JWT_KEY
               valueFrom:
                 secretKeyRef:

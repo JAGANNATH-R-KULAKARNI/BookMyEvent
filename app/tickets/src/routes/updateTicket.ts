@@ -4,7 +4,7 @@ import { validateRequest } from '@jrk1718tickets/common';
 import { NotFoundError } from '@jrk1718tickets/common';
 import { requireAuthorization } from '@jrk1718tickets/common';
 import { UnAuthorizedError } from '@jrk1718tickets/common';
-import { Ticket } from '../models/Tickets';
+import { Ticket } from '../models/Ticket';
 
 const router=express.Router();
 

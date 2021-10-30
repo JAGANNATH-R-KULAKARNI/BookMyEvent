@@ -23,6 +23,7 @@ app.use(
   })
 );
 
+app.use(currentUser);
 app.use(createTicket);
 app.use(allTickets);
 app.use(showTicket);

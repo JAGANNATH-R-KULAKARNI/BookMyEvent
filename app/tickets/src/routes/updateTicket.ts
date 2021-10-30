@@ -9,13 +9,13 @@ import { Ticket } from '../models/Ticket';
 const router=express.Router();
 
 router.put('/api/tickets/:id',
+requireAuthorization,
 [
   body('title').not().isEmpty().withMessage('Title is necessary'),
   body('price').isFloat({gt : 0})
   .withMessage('Price is required and it must be greater tha or equal to zero')
 ]
 ,
-requireAuthorization,
 async(req : Request,res : Response)=>{
 
   const ticket=await Ticket.findById(req.params.id);

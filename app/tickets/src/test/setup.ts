@@ -34,25 +34,27 @@ afterAll(async () => {
   await mongoose.connection.close();
 });
 
-// export const signin= () => {
-//   //Building a JWT payload
-//   const payload = {
-//     id: new mongoose.Types.ObjectId().toHexString(),
-//     email: 'jagannathrkulakarni.171845@gmail.com',
-//   };
+const fakeSignin= () => {
+  //Building a JWT payload
+  const payload = {
+    id: new mongoose.Types.ObjectId().toHexString(),
+    email: 'jagannathrkulakarni.171845@gmail.com',
+  };
 
-//    //create the JWT
-//   const token = jwt.sign(payload, process.env.BME_JWT_KEY!);
+   //create the JWT
+  const token = jwt.sign(payload, process.env.BME_JWT_KEY!);
 
-//   //Build the session object
-//   const session = { jwt: token };
+  //Build the session object
+  const session = { jwt: token };
 
-//   //Turn the session into JSON
-//   const sessionJSON = JSON.stringify(session);
+  //Turn the session into JSON
+  const sessionJSON = JSON.stringify(session);
 
-//   //Take JSON and encode it to base64
-//   const base64 = Buffer.from(sessionJSON).toString('base64');
+  //Take JSON and encode it to base64
+  const base64 = Buffer.from(sessionJSON).toString('base64');
 
-//   //return the string that is the cookie with the encoded data
-//   return [`express:sess=${base64}`];
-// };
+  //return the string that is the cookie with the encoded data
+  return [`express:sess=${base64}`];
+};
+
+export {fakeSignin};

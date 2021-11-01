@@ -5,6 +5,7 @@ import { NotFoundError } from '@jrk1718tickets/common';
 import { requireAuthorization } from '@jrk1718tickets/common';
 import { UnAuthorizedError } from '@jrk1718tickets/common';
 import { Ticket } from '../models/Ticket';
+import {BadRequestError} from '@jrk1718tickets/common';
 
 const router=express.Router();
 
@@ -12,8 +13,9 @@ router.put('/api/tickets/:id',
 requireAuthorization,
 [
   body('title').not().isEmpty().withMessage('Title is necessary'),
-  body('price').isFloat({gt : 0})
-  .withMessage('Price is required and it must be greater tha or equal to zero')
+  body('price')
+  // .isFloat({gt : 0})
+  // .withMessage('Price is required and it must be greater than or equal to zero')
 ]
 ,
 async(req : Request,res : Response)=>{
@@ -26,6 +28,10 @@ async(req : Request,res : Response)=>{
   //req.currentUser! is used to check whether currentUser is defined or not
   if(ticket.userId !== req.currentUser!.id){
       throw new UnAuthorizedError();
+  }
+  
+  if(req.body.price < 0){
+    throw new BadRequestError('Price is required and it must be greater than or equal to zero')
   }
 
   ticket.set({

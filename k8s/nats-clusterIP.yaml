@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: bme-nats-svc
+spec:
+  selector:
+    app: bme-nats
+  ports:
+    - name: bme-nats-client
+      protocol: TCP
+      port: 4222
+      targetPort: 4222
+    - name: bme-nats-monitoring
+      protocol: TCP
+      port: 8222
+      targetPort: 8222

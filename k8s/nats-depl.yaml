@@ -19,13 +19,13 @@ spec:
             [
               '-p',
               '4222',
-              '-m',
-              '8222',
-              '-hbi',
+              '-m', #Napster is a protocol for sharing files between users. With Napster, the files stay on the client machine, never passing through the server
+              '8222', #heartbeat(A heartbeat is like a little request that napster server is going to send to all its different connected clients,This a healt check to know still the client is running correctl or not)   
+              '-hbi', #HBI is how often the street server is going to make a beat request to each of its client
               '5s',
-              '-hbt',
+              '-hbt', #HBT is how long each client has to respond
               '5s',
-              '-hbf',
+              '-hbf', #HBF is the number of times each client can fail before napster server is going to assume that connection is dead and gone
               '2',
               '-SD',
               '-cid',

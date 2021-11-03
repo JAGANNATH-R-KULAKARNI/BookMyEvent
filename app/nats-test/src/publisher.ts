@@ -12,7 +12,7 @@ stan.on('connect', () => {                //This runs only after client(stan) su
 
   const data = JSON.stringify({
     id: '123',
-    title: 'concert',
+    title: 'jagannath concert',
     price: 20,
   });
 

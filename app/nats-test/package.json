@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@jrk1718tickets/common": "^1.0.7",
     "@types/node": "^16.11.6",
     "node-nats-streaming": "^0.3.2",
     "ts-node-dev": "^1.1.8",

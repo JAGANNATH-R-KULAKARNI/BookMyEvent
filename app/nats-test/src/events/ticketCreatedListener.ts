@@ -1,14 +1,19 @@
 import {Message} from 'node-nats-streaming';
-import { Listener } from './baseListener';
-
-export class TicketCreatedListener extends Listener{
-  subject='ticket:created';
+import { Listener } from '@jrk1718tickets/common';
+import { TicketCreatedEvent } from '@jrk1718tickets/common';
+import { Subjects } from '@jrk1718tickets/common';
+export class TicketCreatedListener extends Listener<TicketCreatedEvent>{
+  subject : Subjects.TicketCreated = Subjects.TicketCreated;
+  //We need to provide the annotations because typescript may fear we willc ahnge tha value in future
   queueGroupName='payment-service';
 
 
-  onMessage(data : any,msg : Message){
+  onMessage(data : TicketCreatedEvent['data'],msg : Message){
     console.log('Event data ',data);
 
     msg.ack();
   }
 }
+
+
+//If you don't understand watch the video from 305 to 310

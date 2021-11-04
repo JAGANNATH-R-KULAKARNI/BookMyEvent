@@ -28,7 +28,7 @@ spec:
               '-hbf', #HBF is the number of times each client can fail before napster server is going to assume that connection is dead and gone
               '2',
               '-SD',
-              '-cid',
+              '-cid', #cid stands for clusterId,which assigns ID to cluster
               'ticketing',
             ]  
           # env:

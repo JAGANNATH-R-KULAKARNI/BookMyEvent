@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 import { app } from './app';
+import { natsWrapper } from './natsWrapper';
 
 const startTheServer = async () => {
   if (!process.env.BME_JWT_KEY) {
@@ -11,6 +12,7 @@ const startTheServer = async () => {
   }
 
   try {
+    await natsWrapper.connect('ticketing','bsjaikikka','http://bme-nats-svc:4222')
     await mongoose.connect(process.env.BME_MONGO_URI);
     console.log('Connected to MongoDB');
   } catch (err) {

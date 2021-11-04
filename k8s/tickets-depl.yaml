@@ -16,6 +16,14 @@ spec:
         - name: bme-tickets
           image: jagannathrk/bookmyevent-tickets-dockerfile
           env:
+            - name: NATS_CLIENT_ID
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name  # Name of pod(unique always soo)
+            - name: NATS_URL
+              value: 'http://bme-nats-svc:4222'
+            - name: NATS_CLUSTER_ID
+              value: ticketing  
             - name: BME_MONGO_URI
               value: 'mongodb://tickets-mongo-svc:27017/auth'
             - name: BME_JWT_KEY

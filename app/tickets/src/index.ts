@@ -45,3 +45,5 @@ app.listen(3000, () => {
 
 
 startTheServer();
+
+//Starting the server

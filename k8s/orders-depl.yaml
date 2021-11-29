@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bme-orders-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bme-orders
+  template:
+    metadata:
+      labels:
+        app: bme-orders
+    spec:
+      containers:
+        - name: bme-orders
+          image: jagannathrk/bme-orders-deployment
+          env:
+            - name: NATS_CLIENT_ID
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name  # Name of pod(unique always soo)
+            - name: NATS_URL
+              value: 'http://bme-nats-svc:4222'
+            - name: NATS_CLUSTER_ID
+              value: ticketing  
+            - name: BME_MONGO_URI
+              value: 'mongodb://orders-mongo-svc:27017/auth'
+            - name: BME_JWT_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: bme-jwt-secret
+                  key: BME_JWT_KEY

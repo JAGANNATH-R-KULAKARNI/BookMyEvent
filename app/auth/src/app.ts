@@ -4,7 +4,8 @@ import { json} from 'body-parser';
 //Parse incoming request bodies in a middleware before your handlers, available under the req.body property.
 import 'express-async-errors';
 //As we all know express sends a function called next into the middleware,
-// which then needs to be called with or without error to make it move the request handling to the next middleware. It still works, but in case of an async function, you don't need to do that. If you want to pass an error, just throw a normal exception:
+// which then needs to be called with or without error to make it move the request handling to the next middleware.
+// It still works, but in case of an async function, you don't need to do that. If you want to pass an error, just throw a normal exception:
 import cookieSession from 'cookie-session';
 //A session cookie contains information that is stored in a temporary memory location 
 //and then subsequently deleted after the session is completed or the web browser is closed. 
@@ -23,6 +24,9 @@ const app=express();
 app.set('trust proxy', true);
 //By enabling the "trust proxy" setting via app.enable('trust proxy'), Express will have knowledge
 // that it's sitting behind a proxy and that the X-Forwarded-* header fields may be trusted, which otherwise may be easily spoofed.
+
+//In computer networking, a proxy server is a server application that acts as an intermediary between a client requesting a resource and the server providing that resource
+
 app.use(json());
 //A user session can be stored in two main ways with cookies: on the server or on the client. 
 //This module stores the session data on the client within a cookie, while a module

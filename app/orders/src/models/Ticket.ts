@@ -3,6 +3,8 @@ import mongoose from 'mongoose';
 import { Order,OrderStatus} from './Order';
 
 interface TicketAttrs {
+  id : string; //when ticket service emmits ticket we need to receieve ack ,so 
+  //we need to have consistency in id's that is the reason we added id
   title: string;
   price: number;
 }
@@ -40,7 +42,11 @@ const ticketSchema = new mongoose.Schema(
 );
 
 ticketSchema.statics.build = (attrs: TicketAttrs) => {
-  return new Ticket(attrs);
+  return new Ticket({
+    _id : attrs.id, //Because mongoDB accepts _id only as identity
+    title : attrs.title,
+    price : attrs.price
+  });
 };
 
 ticketSchema.methods.isReserved = async function () {

@@ -2,7 +2,7 @@ import express from 'express';
 import {Request,Response} from 'express';
 import {  validateRequest,requireAuthorization } from '@jrk1718tickets/common';
 import { body } from 'express-validator';
-import { Ticket,buildTicket } from '../models/Ticket';
+import { Ticket } from '../models/Ticket';
 import { TicketCreatedPublisher } from '../events/publisher/ticketCreatedPublisher';
 import { natsWrapper } from '../natsWrapper';
 
@@ -27,7 +27,7 @@ async (req : Request,res : Response)=>{
   //     await ticket.save();
   //     return res.status(201).send(ticket);
 
-  const ticket=buildTicket({
+  const ticket=Ticket.build({
     title,
     price,
     userId : req.currentUser!.id

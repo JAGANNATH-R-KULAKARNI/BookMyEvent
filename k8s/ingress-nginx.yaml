@@ -32,7 +32,7 @@ spec:
                 name: bme-orders-svc
                 port: 
                   number: 3000                  
-          - path: /*
+          - path: /?(.*)
             pathType: Prefix
             backend:
               service: 

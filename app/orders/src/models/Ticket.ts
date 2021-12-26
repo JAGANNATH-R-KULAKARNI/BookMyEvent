@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-
+import {updateIfCurrentPlugin} from 'mongoose-update-if-current'
 import { Order,OrderStatus} from './Order';
 
 interface TicketAttrs {
@@ -12,11 +12,16 @@ interface TicketAttrs {
 export interface TicketDoc extends mongoose.Document {
   title: string;
   price: number;
+  version : number;
   isReserved(): Promise<boolean>;  //Whether the ticket is reserved or not
 }
 
 interface TicketModel extends mongoose.Model<TicketDoc> {
   build(attrs: TicketAttrs): TicketDoc;
+  findByEvent(event: {
+    id: string;
+    version: number;
+  }): Promise<TicketDoc | null>;
 }
 
 const ticketSchema = new mongoose.Schema(
@@ -40,6 +45,22 @@ const ticketSchema = new mongoose.Schema(
     },
   }
 );
+
+ticketSchema.set('versionKey', 'version');
+ticketSchema.plugin(updateIfCurrentPlugin);
+//This plugin brings optimistic concurrency control to Mongoose documents by 
+//incrementing document version numbers on each save, and preventing previous 
+//versions of a document from being saved over the current version.
+
+
+//This function solves concurrancy issues. The requested event version should be one version ahead of previous version in database 
+//or eles its not updated
+ticketSchema.statics.findByEvent = (event: { id: string; version: number }) => {
+  return Ticket.findOne({
+    _id: event.id,
+    version: event.version - 1,
+  });
+};
 
 ticketSchema.statics.build = (attrs: TicketAttrs) => {
   return new Ticket({
